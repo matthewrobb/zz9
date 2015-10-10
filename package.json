@@ -1,5 +1,5 @@
 {
-  "name": "tvmaze",
+  "name": "zz9",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,14 +11,21 @@
   "dependencies": {
     "babel": "^5.8.23",
     "bluebird": "^2.10.2",
+    "episode-parser": "^1.0.0",
     "fast-feed": "^1.5.2",
     "feedparser": "^1.1.3",
     "hapi": "^10.4.0",
     "hapi-nedb-connector": "^0.1.1",
+    "linvodb3": "^3.11.0",
     "lodash": "^3.10.1",
+    "medeadown": "^1.1.8",
+    "newznab-feedparser": "^0.2.0",
     "request": "^2.64.0",
+    "request-promise": "^0.4.3",
     "sequelize": "^3.11.0",
     "sqlite3": "^3.1.0",
+    "tvmaze": "^0.2.0",
+    "winston": "^1.1.0",
     "xml2js": "^0.4.12",
     "xml2json": "^0.9.0"
   },

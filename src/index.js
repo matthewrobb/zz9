@@ -2,6 +2,8 @@ import {Server} from 'hapi';
 
 import routes from './routes.js';
 
+
+
 const server = new Server();
 
 server.connection({
@@ -29,7 +31,7 @@ server.register(
 
     // add routes
     server.route(routes);
-    
+
   }
 );
 

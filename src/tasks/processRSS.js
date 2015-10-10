@@ -54,7 +54,7 @@ let checkPotentialItems = (items,episodes) => {
     if (matched && !matched.blacklist.includes(item.title)) {
       matched.status = 'found';
       matched.nzbs = matched.nzbs || [];
-      matched.nzbs.push({ item });
+      matched.nzbs.push(item);
       matched.save();
       foundEpisodes = true;
     }

@@ -8,6 +8,15 @@ let Episode = new db('episode', {
   airdate: Date,
   status: String,
   blacklist: [String],
+  download: {
+    name: String,
+    percentComplete: Number,
+    id: String,
+    status: String,
+    eta: String,
+    startedAt: Date,
+    finishedAt: Date
+  },
   show_id: String, // show
   rage_id: Number, // show
   tvmaze_id: Number, // show

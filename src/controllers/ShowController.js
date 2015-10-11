@@ -44,7 +44,7 @@ const ShowController = {
           settings: {
             folder: '',
             seasonFolders: true,
-            quality: [720,1080],
+            quality: '720',
             subscription: true
           },
           wanted: true
@@ -67,6 +67,7 @@ const ShowController = {
               rage_id: newShow.rage_id,
               tvmaze_id: newShow.tvmaze_id,
               tvdb_id: newShow.tvdb_id,
+              quality: '720',
               summary: mazeEpisode.summary
             });
           });

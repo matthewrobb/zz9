@@ -11,15 +11,12 @@ let pad = (num) => {
 };
 
 let fetch = async() => {
-  console.log('parsing found');
 
   Episode.find({ status:'found' }).exec( (err, episodes) => {
     episodes.forEach( async (episode) => {
       try {
-        console.log('ep', episode)
         let nzb = episode.nzbs.pop();
         let s = await sab.addURL(escape(nzb.nzbUrl),nzb.title,'tv');
-        console.log('sent to sab',s)
         episode.status = 'downloading';
         episode.download = {
           name: nzb.title,

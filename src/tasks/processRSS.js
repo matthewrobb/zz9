@@ -17,8 +17,6 @@ let processRSS = async(episodes) => {
   // let xml = await request(config.testurl);
   let items = parse(xml, date);
 
-  console.log('found ' + items.length + ' new feed items to parse')
-
   let tvdb = episodes.map( (episode) => {
     return episode.tvdb_id;
   });

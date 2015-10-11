@@ -10,7 +10,7 @@ let Show = new db('show', {
   settings: {
     folder: String,
     seasonFolders: Boolean,
-    quality: [String],
+    quality: String, // any sd hd hd720 hd1080
     subscription: Boolean
   },
   wanted: Boolean

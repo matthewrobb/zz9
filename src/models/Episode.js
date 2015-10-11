@@ -1,4 +1,5 @@
 import db from '../db.js';
+import bluebird from 'bluebird';
 
 let Episode = new db('episode', {
   show: String, // show
@@ -7,7 +8,6 @@ let Episode = new db('episode', {
   number: Number,
   airdate: Date,
   status: String,
-  blacklist: [String],
   download: {
     name: String,
     percentComplete: Number,
@@ -21,8 +21,11 @@ let Episode = new db('episode', {
   rage_id: Number, // show
   tvmaze_id: Number, // show
   tvdb_id: Number, // show
+  quality: String, // any sd hd 720 1080
   summary: String,
   path: String
 }, {});
+
+bluebird.promisifyAll(Episode);
 
 export default Episode;

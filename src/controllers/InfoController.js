@@ -1,4 +1,4 @@
-import TVMaze from '../tvmaze.js';
+import TVMaze from 'tvmaze';
 
 const maze = new TVMaze();
 

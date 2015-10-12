@@ -1,19 +1,19 @@
 {
-  "parser": "babel-eslint",
-  "env": {
-    "node": true,
-    "es6": true
+  "extends": "airbnb",
+  "globals": {
+    "__DEV__"      : false,
+    "__PROD__"     : false,
+    "__DEBUG__"    : false,
+    "__DEBUG_NW__" : false
   },
   "rules": {
-    "eqeqeq": [2, "smart"],
-    "no-unused-vars": 2,
-    "space-before-blocks": 2,
-    "no-lonely-if": 2,
-    "curly": [2, "multi-line"],
-    "no-redeclare": 1,
-    "no-shadow": 1,
-    "no-use-before-define": [1,"nofunc"],
-    "quotes": [2, "single"],
-    "space-before-blocks": 2
+    "comma-dangle": [1, "never"],
+    "key-spacing": [0, {
+      "beforeColon": true,
+      "afterColon": true
+    }],
+    "no-else-return": 0,
+    "space-before-function-paren": [0, "always"],
+    "react/jsx-quotes": [0, "single"]
   }
 }

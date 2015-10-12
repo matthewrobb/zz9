@@ -1,4 +1,5 @@
 import request from 'request';
+import _ from 'lodash';
 
 let get = (url) => {
   return new Promise ( (resolve, reject) => {
@@ -26,10 +27,22 @@ export default class Sabnzbd {
       return queue.queue;
     }
 
+    async findByName(name) {
+      let queue = await this.queue();
+
+      let item = _.findWhere(queue.slots, { filename: name});
+
+      if (item) return item;
+
+      let history = await this.history();
+
+      return _.findWhere(history.slots, { name: name}) || null;
+    }
+
     async history(start, limit) {
       let q = await get(this.url + '&mode=history');
 
-      return q;
+      return q.history;
     }
 
     async deleteFromHistory(value) {
@@ -45,6 +58,7 @@ export default class Sabnzbd {
     }
 
     async addURL(url, name, cat) {
+      url = escape(url);
       let q = await get(this.url + `&mode=addurl&name=${url}&nzbname=${name}&cat=${cat}`);
       return q;
     }

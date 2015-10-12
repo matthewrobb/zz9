@@ -1,12 +1,10 @@
-import config from '../../config.json';
 import request from 'request-promise';
 import parse from 'newznab-feedparser';
 import _ from 'lodash';
 import logger from '../logger.js';
-
+import DownloadEpisode from './DownloadEpisode.js';
 import Episode from '../models/Episode.js';
 import Provider from '../models/Provider.js';
-import ProcessEpisode from './ProcessEpisode.js';
 
 let getFeed = async(provider) => {
 

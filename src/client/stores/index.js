@@ -1,11 +1,17 @@
-import { compose, createStore } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 import { devTools } from 'redux-devtools';
 import rootReducer from 'reducers';
 
+let loggerMiddleware = createLogger();
 let createStoreWithMiddleware;
 
 if (__DEBUG__) {
-  createStoreWithMiddleware = compose(devTools())(createStore);
+  createStoreWithMiddleware = compose(
+    applyMiddleware(thunkMiddleware, loggerMiddleware),
+    devTools()
+  )(createStore);
 } else {
   createStoreWithMiddleware = createStore;
 }

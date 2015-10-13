@@ -12,8 +12,10 @@ function requestShows() {
 function receiveShows(json) {
   return {
     type: RECEIVE_SHOWS,
-    items: json,
-    receivedAt: Date.now()
+    payload: {
+      items: json,
+      receivedAt: Date.now()
+    }
   };
 }
 
@@ -27,15 +29,17 @@ function fetchShows() {
 }
 
 function shouldFetchShows(state) {
-  const shows = state.shows;
-  if (shows) return true;
-  if (shows.isFetching) return false;
-  return shows.didInvalidate;
+  return true;
+  // const shows = state.shows;
+  // if (shows) return true;
+  // if (shows.isFetching) return false;
+  // return shows.didInvalidate;
 }
 
 export function fetchShowsIfNeeded() {
   return (dispatch, getState) => {
     if (shouldFetchShows(getState())) {
+      console.log('we')
       return dispatch(fetchShows());
     }
   };

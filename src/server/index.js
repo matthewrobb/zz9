@@ -7,7 +7,8 @@ const server = new Server();
 
 server.connection({
   host: process.env.HOSTNAME || 'localhost',
-  port: process.env.PORT || 8000
+  port: process.env.PORT || 8000,
+  routes: { cors: true}
 });
 
 server.register(
@@ -23,11 +24,11 @@ server.register(
     server.route(routes);
 
     server.route({
-        method: 'GET',
-        path: '/nzbsorg.xml',
-        handler: function (request, reply) {
-          reply.file('./testdata/nzbsorg.xml')
-        }
+      method: 'GET',
+      path: '/nzbsorg.xml',
+      handler: (request, reply) => {
+        reply.file('./testdata/nzbsorg.xml');
+      }
     });
   }
 );

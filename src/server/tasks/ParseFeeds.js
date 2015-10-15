@@ -5,6 +5,7 @@ import logger from '../logger.js';
 import downloadEpisode from './DownloadEpisode.js';
 import Episode from '../models/Episode.js';
 import Provider from '../models/Provider.js';
+import matcher from 'EpisodeMatcher';
 
 // date of the last run
 let lastRunDate = new Date(0);
@@ -17,7 +18,7 @@ const getFeed = async(provider) => {
     uri: provider.feedUrl,
     resolveWithFullResponse: true
   });
-  
+
   if (response.headers['content-type'].includes('text/xml')) {
     return parse(response.body, provider.lastCheck);
   }
@@ -82,19 +83,7 @@ export default class ParseFeeds {
           const episode = await Episode.findOneAsync({_id: item});
 
           const nzbList = keyedItems[item].filter( (nzb) => {
-            if (episode.blacklist.includes(nzb.nzbUrl)) return false;
-
-            if (episode.quality === 'any') return true;
-
-            if (episode.quality === '720' && nzb.quality === 720) return true;
-
-            if (episode.quality === '1080' && nzb.quality === 1080) return true;
-
-            if (episode.quality === 'hd' && nzb.isHD) return true;
-
-            if (episode.quality === 'sd' && !nzb.isHD) return true;
-
-            return false;
+            return matcher.match(episode, nzb);
           });
 
           if (nzbList.length) {
